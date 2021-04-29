@@ -111,7 +111,7 @@ namespace HomeWork_4_02
                
             }
 
-            else if (counterAll == 2)
+            else if (counterAll == 3)
             {
                 for (int o = 0; o < 12; o++)                                                // Цикл выявления двух наименьших чисел
                 {
@@ -120,7 +120,7 @@ namespace HomeWork_4_02
                         smallestNumbers[n++] = profitOfMonthMassiv[o];                      // Заполнение массива наименьшими числами 
                         counter++;
 
-                        if (counter == 2) break;                                            // Условие выхода из цикла
+                        if (counter == 3) break;                                            // Условие выхода из цикла
                     }
                     else
                     {
@@ -166,7 +166,7 @@ namespace HomeWork_4_02
                 }
             }
 
-            Console.Write("\n Три нименьших показателя прибыли : ");                        // Вывод в консоль текста
+            Console.Write($"\n {counter} нименьших показателя прибыли : ");                        // Вывод в консоль текста
 
             for (int f = 0; f < counter; f++)                                               // Цикл перебора массива с наименьшими значениями 
             {
