@@ -44,9 +44,9 @@ namespace HomeWork_4_02
 
             for (int i = 0; i < 12; i++)                                                    // Цикл в котором массивы получают рандомные значени
             {
-                incomeOfMonthMassiv[i] = randomiz.Next(0, 2);                               // Присваивание переменной случайных значений
+                incomeOfMonthMassiv[i] = randomiz.Next(0, 1_000_000);                               // Присваивание переменной случайных значений
 
-                expensesOfMonthMassiv[i] = randomiz.Next(0, 2);                             // Присваивание переменной случайных значений
+                expensesOfMonthMassiv[i] = randomiz.Next(0, 1_000_000);                             // Присваивание переменной случайных значений
 
                 profitOfMonthMassiv[i] = incomeOfMonthMassiv[i] - expensesOfMonthMassiv[i]; //Вычисление прибыли
 
@@ -60,9 +60,12 @@ namespace HomeWork_4_02
                 {
                     counterZero++;
 
-                    if (counterZero == 11)
+                    if (counterZero == 12)
                     {
+                        Console.WriteLine();
+                        Console.WriteLine();
                         Console.WriteLine($" Прибыль и рсход равны нулю ");
+                        Console.ReadKey();
                         Environment.Exit(counterZero);
                     }
                     else
@@ -79,7 +82,7 @@ namespace HomeWork_4_02
             Console.WriteLine();
             Console.WriteLine();
 
-            for (int s = 0; s < 12; s++)                                                    // Цикл основного счетчика 
+            for (int s = 0; s <= 12; s++)                                                    // Цикл основного счетчика 
             {
                 if (s == 11) break;
 
@@ -97,6 +100,7 @@ namespace HomeWork_4_02
                     if (profitOfMonthMassiv[q] != profitOfMonthMassiv[q + 1])               // Проверка и избавление от повторяющихся чисел
                     {
                         smallestNumbers[n] = profitOfMonthMassiv[q];                        // Заполнение массива наименьшими числами 
+                        smallestNumbers[1] = profitOfMonthMassiv[q + 1];
                         counter++;
 
                         if (counter == 1) break;                                            // Условие выхода из цикла
@@ -108,28 +112,7 @@ namespace HomeWork_4_02
                     }
 
                 }
-               
-            }
 
-            else if (counterAll == 3)
-            {
-                for (int o = 0; o < 12; o++)                                                // Цикл выявления двух наименьших чисел
-                {
-                    if (profitOfMonthMassiv[o] != profitOfMonthMassiv[o + 1])               // Проверка и избавление от повторяющихся чисел
-                    {
-                        smallestNumbers[n++] = profitOfMonthMassiv[o];                      // Заполнение массива наименьшими числами 
-                        counter++;
-
-                        if (counter == 3) break;                                            // Условие выхода из цикла
-                    }
-                    else
-                    {
-                        if (o == 10) break;
-                        continue;                                                           // Возврат к началу цикла
-                    }
-
-                }
-                
             }
             else
             {
@@ -137,10 +120,12 @@ namespace HomeWork_4_02
                 {
                     if (profitOfMonthMassiv[m] != profitOfMonthMassiv[m + 1])               // Проверка и избавление от повторяющихся чисел
                     {
-                        smallestNumbers[n++] = profitOfMonthMassiv[m];                      // Заполнение массива наименьшими числами 
                         counter++;
+                        smallestNumbers[n++] = profitOfMonthMassiv[m];                      // Заполнение массива наименьшими числами 
+                        smallestNumbers[2] = profitOfMonthMassiv[m + 1];
 
-                        if (counter == 3) break;                                            // Условие выхода из цикла
+
+                        if (counter == 2) break;                                            // Условие выхода из цикла
                     }
                     else
                     {
@@ -149,47 +134,112 @@ namespace HomeWork_4_02
                     }
 
                 }
-                
             }
 
-            Console.WriteLine($" Количество месяцев с минимальной прибылью : {counter}");   // Вывод в консоль текста
-            Console.Write($" Номера месяцев с минимальной прибылью : ");                    // Вывод в консоль текста
-            
-            for (int g = 0; g < counter; g++)                                               // Цикл выявления наименьших значений 
-            {                                                                               // с повторениями
-                for (int a = 0; a < 12; a++)
-                {
-                    if (smallestNumbers[g] == profitOfMonthMassiv[a])                       // Условие выявления наименьших значений
+            //else if (counterAll == 2)
+            //{
+            //    for (int o = 0; o < 12; o++)                                                // Цикл выявления двух наименьших чисел
+            //    {
+            //        if (profitOfMonthMassiv[o] != profitOfMonthMassiv[o + 1])               // Проверка и избавление от повторяющихся чисел
+            //        {
+            //            smallestNumbers[n++] = profitOfMonthMassiv[o];                      // Заполнение массива наименьшими числами 
+            //            smallestNumbers[2] = profitOfMonthMassiv[o + 1];
+            //            counter++;
+
+            //            if (counter == 3) break;                                            // Условие выхода из цикла
+            //        }
+            //        else
+            //        {
+            //            if (o == 10) break;
+            //            continue;                                                           // Возврат к началу цикла
+            //        }
+
+            //    }
+
+            //}
+
+            if (counter == 1)
+            {
+                Console.WriteLine($" Количество месяцев с минимальной прибылью : 2");   // Вывод в консоль текста
+                Console.Write($" Номера месяцев с минимальной прибылью : ");                    // Вывод в консоль текста
+
+                for (int g = 0; g <= counter; g++)                                               // Цикл выявления наименьших значений 
+                {                                                                               // с повторениями
+                    for (int a = 0; a < 12; a++)
                     {
-                        Console.Write($"{month[a]},");                                      // Вывод выявления наименьших значений
+                        if (smallestNumbers[g] == profitOfMonthMassiv[a])                       // Условие выявления наименьших значений
+                        {
+                            Console.Write($"{month[a]},");                                      // Вывод выявления наименьших значений
+                        }
                     }
                 }
-            }
 
-            Console.Write($"\n {counter} нименьших показателя прибыли : ");                        // Вывод в консоль текста
+                Console.Write($"\n Два нименьших показателя прибыли : ");                        // Вывод в консоль текста
 
-            for (int f = 0; f < counter; f++)                                               // Цикл перебора массива с наименьшими значениями 
-            {
-                Console.Write($" {smallestNumbers[f]:### ##0}, ");
-            }
-
-            Console.WriteLine();                                                            // Пустая строка
-
-            for (int z = 0; z < 12; z++)                                                    // Цикл подсчета месяцев с положительной прибылью
-            {
-                if (profitOfMonthMassiv[z] > 0)                                             // Условие вычисления положительной прибыли
-                {   
-                    numberOfMonthsWithAPositiveProfit++;                                    // Счетчик месяцев с положительной прибылью 
-
+                for (int f = 0; f <= counter; f++)                                               // Цикл перебора массива с наименьшими значениями 
+                {
+                    Console.Write($" {smallestNumbers[f]:### ##0}, ");
                 }
+
+                Console.WriteLine();                                                            // Пустая строка
+
+                for (int z = 0; z < 12; z++)                                                    // Цикл подсчета месяцев с положительной прибылью
+                {
+                    if (profitOfMonthMassiv[z] > 0)                                             // Условие вычисления положительной прибыли
+                    {
+                        numberOfMonthsWithAPositiveProfit++;                                    // Счетчик месяцев с положительной прибылью 
+
+                    }
+                }
+                // Вывод кол-ва месяцев с положительной прибылью
+                Console.Write($" Количество месяцев с положительной прибылью : {numberOfMonthsWithAPositiveProfit}");
+
+                Console.WriteLine();                                                            // Пустая строка
+
+                Console.ReadKey();
+
             }
-                                                                                            // Вывод кол-ва месяцев с положительной прибылью
-            Console.Write($" Количество месяцев с положительной прибылью : {numberOfMonthsWithAPositiveProfit}");
+            else
+            {
+                Console.WriteLine($" Количество месяцев с минимальной прибылью : 3");   // Вывод в консоль текста
+                Console.Write($" Номера месяцев с минимальной прибылью : ");                    // Вывод в консоль текста
 
-            Console.WriteLine();                                                            // Пустая строка
+                for (int g = 0; g <= counter; g++)                                               // Цикл выявления наименьших значений 
+                {                                                                               // с повторениями
+                    for (int a = 0; a < 12; a++)
+                    {
+                        if (smallestNumbers[g] == profitOfMonthMassiv[a])                       // Условие выявления наименьших значений
+                        {
+                            Console.Write($"{month[a]},");                                      // Вывод выявления наименьших значений
+                        }
+                    }
+                }
 
-            Console.ReadKey();
-            
+                Console.Write($"\n Три нименьших показателя прибыли : ");                        // Вывод в консоль текста
+
+                for (int f = 0; f <= counter; f++)                                               // Цикл перебора массива с наименьшими значениями 
+                {
+                    Console.Write($" {smallestNumbers[f]:### ##0}, ");
+                }
+
+                Console.WriteLine();                                                            // Пустая строка
+
+                for (int z = 0; z < 12; z++)                                                    // Цикл подсчета месяцев с положительной прибылью
+                {
+                    if (profitOfMonthMassiv[z] > 0)                                             // Условие вычисления положительной прибыли
+                    {
+                        numberOfMonthsWithAPositiveProfit++;                                    // Счетчик месяцев с положительной прибылью 
+
+                    }
+                }
+                // Вывод кол-ва месяцев с положительной прибылью
+                Console.Write($" Количество месяцев с положительной прибылью : {numberOfMonthsWithAPositiveProfit}");
+
+                Console.WriteLine();                                                            // Пустая строка
+
+                Console.ReadKey();
+
+            }
         }
     }
 }
